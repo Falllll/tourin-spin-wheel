@@ -108,7 +108,7 @@ const generateValue = (angleValue) => {
     if (angleValue >= i.minDegree && angleValue <= i.maxDegree) {
 
       // DEBUGGING
-      console.log(angleValue);
+      // console.log(angleValue);
       // DEBUGGING
 
       text.innerHTML = `<p>Congratulations, You Have Won $${i.value} ! </p>`;
@@ -123,14 +123,25 @@ let resultValue = 101;
 spinBtn.addEventListener("click", () => {
   spinBtn.disabled = true;
   text.innerHTML = `<p>Best Of Luck!</p>`;
-  let randomDegree = Math.floor(Math.random() * (355 - 0 + 1) + 0);
+  // let randomDegree = Math.floor(Math.random() * (355 - 0 + 1) + 0);
+
+  // SET ANGKA PEMENANG DARI SINI
+  // ITUNG KIRA2 BRP DERAJAT, ANTI-CLOCKWISE DARI ATAS (INDICATOR)
+  let randomDegree = 80;
+
+
   let rotationInterval = window.setInterval(() => {
     spinChart.options.rotation = spinChart.options.rotation + resultValue;
+
+    console.log(`count: ${count}`);
+    console.log("spinChart.options.rotation");
+    console.log(spinChart.options.rotation);
+
     spinChart.update();
     if (spinChart.options.rotation >= 360) {
       count += 1;
       resultValue -= 5;
-      spinChart.options.rotation = 0;
+      spinChart.options.rotation = spinChart.options.rotation % 360;
     } else if (count > 15 && spinChart.options.rotation == randomDegree) {
       generateValue(randomDegree);
       clearInterval(rotationInterval);
