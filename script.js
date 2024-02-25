@@ -93,6 +93,8 @@ let spinChart = new Chart(spinWheel, {
       },
       datalabels: {
         rotation: 90,
+        align: 'start',
+        anchor: 'end',
         color: "#ffffff",
         formatter: (_, context) => context.chart.data.labels[context.dataIndex],
         font: { size: 24 },
